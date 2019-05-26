@@ -987,7 +987,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function (exports) {
         that.elem.on('click', 'input[name="layTableCheckbox"]+', function () {
             var checkbox = $(this).prev()
                 , childs = that.layBody.find('input[name="layTableCheckbox"]')
-                , index = checkbox.parents('tr').eq(0).data('index')
+                , index = checkbox.parents('tr').eq(0).data('templates.index')
                 , checked = checkbox[0].checked
                 , isAll = checkbox.attr('lay-filter') === 'layTableAllChoose';
 
@@ -1026,7 +1026,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function (exports) {
             var othis = $(this)
                 , value = this.value
                 , field = othis.parent().data('field')
-                , index = othis.parents('tr').eq(0).data('index')
+                , index = othis.parents('tr').eq(0).data('templates.index')
                 , data = table.cache[that.key][index];
 
             data[field] = value; //更新缓存中的值
@@ -1040,7 +1040,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function (exports) {
             var templet
                 , othis = $(this)
                 , field = othis.parent().data('field')
-                , index = othis.parents('tr').eq(0).data('index')
+                , index = othis.parents('tr').eq(0).data('templates.index')
                 , data = table.cache[that.key][index];
             that.eachCols(function (i, item) {
                 if (item.field == field && item.templet) {
@@ -1114,7 +1114,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function (exports) {
         //工具条操作事件
         that.layBody.on('click', '*[lay-event]', function () {
             var othis = $(this)
-                , index = othis.parents('tr').eq(0).data('index')
+                , index = othis.parents('tr').eq(0).data('templates.index')
                 , tr = that.layBody.find('tr[data-index="' + index + '"]')
                 , ELEM_CLICK = 'layui-table-click'
                 , data = table.cache[that.key][index];

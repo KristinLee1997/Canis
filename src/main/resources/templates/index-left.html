@@ -1,0 +1,49 @@
+<!doctype html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="link::head_link"></head>
+<div id="side-nav" th:fragment="index_left">
+    <ul id="nav">
+        <li class="list" current>
+            <a href="/">
+                <i class="iconfont">&#xe761;</i>
+                欢迎页面
+                <i class="iconfont nav_right">&#xe697;</i>
+            </a>
+        </li>
+        <li class="list">
+            <a href="javascript:;">
+                <i class="iconfont">&#xe70b;</i>
+                题库管理
+                <i class="iconfont nav_right">&#xe697;</i>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="/question/list">
+                        <i class="iconfont">&#xe6a7;</i>
+                        题库列表
+                    </a>
+                    <a href="/question/list">
+                        <i class="iconfont">&#xe6a7;</i>
+                        审核列表
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="list">
+            <a href="javascript:;">
+                <i class="iconfont">&#xe70b;</i>
+                学习专栏管理
+                <i class="iconfont nav_right">&#xe697;</i>
+            </a>
+            <ul class="sub-menu">
+                <li>
+                    <a href="/study/list">
+                        <i class="iconfont">&#xe6a7;</i>
+                        学习专栏列表
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</html>

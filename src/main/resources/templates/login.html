@@ -1,90 +1,89 @@
-<!DOCTYPE html>
-<!--<html lang="en">-->
-<html xmlns="http://www.w3.org/1999/xhtml"/>
+<!doctype html>
+<html lang="en">
 <head>
-    <base id="base" href="/">
-    <meta charset="UTF-8">
-    <title>登录</title>
-    <link rel="stylesheet" type="text/css" href="/static/login/login/css/normalize.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/login/login/css/demo.css"/>
-    <!--必要样式-->
-    <link rel="stylesheet" type="text/css" href="/static/login/login/css/component.css"/>
-    <link rel="stylesheet" type="text/css" href="/static/login/layui/css/layui.css"/>
-    <script type="text/javascript" src="/static/login/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/login/layui/layui.js"></script>
+	<meta charset="UTF-8">
+	<title>后台登录-X-admin1.1</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/X-admin/css/font.css">
+	<link rel="stylesheet" href="/static/X-admin/css/xadmin.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+    <script src="/static/X-admin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/static/X-admin/js/xadmin.js"></script>
+
 </head>
 <body>
-<div class="container demo-1">
-    <div class="content">
-        <div id="large-header" class="large-header">
-            <canvas id="demo-canvas"></canvas>
-            <div class="logo_box">
-                <h3>Dear admin,welcome to Canis!</h3>
-                <form action="#" name="f" method="post">
-                    <div class="input_outer">
-                        <span class="u_user"></span>
-                        <input name="phonenumber" class="text" style="color: #FFFFFF !important" type="text"
-                               placeholder="手机号">
-                    </div>
-                    <div class="input_outer">
-                        <span class="us_uer"></span>
-                        <input name="password" class="text"
-                               style="color: #FFFFFF !important; position:absolute; z-index:100;" value=""
-                               type="password" placeholder="请输入密码"/>
-                    </div>
-                    <div class="mb2">
-                        <a id="sub_login" lay-filter="sub_login" class="act-but submit" href=""
-                           style="color: #FFFFFF">登录</a>
-                    </div>
-                </form>
+    <div class="login-logo"><h1>X-ADMIN V1.1</h1></div>
+    <div class="login-box">
+        <form class="layui-form layui-form-pane" action="">
+              
+            <h3>登录你的帐号</h3>
+            <label class="login-title" for="username">帐号</label>
+            <div class="layui-form-item">
+                <label class="layui-form-label login-form"><i class="iconfont">&#xe6b8;</i></label>
+                <div class="layui-input-inline login-inline">
+                  <input type="text" name="username" lay-verify="required" placeholder="请输入你的帐号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <label class="login-title" for="password">密码</label>
+            <div class="layui-form-item">
+                <label class="layui-form-label login-form"><i class="iconfont">&#xe82b;</i></label>
+                <div class="layui-input-inline login-inline">
+                  <input type="text" name="password" lay-verify="required" placeholder="请输入你的密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-warning pull-right" lay-submit lay-filter="login"  type="submit">登录</button> 
+                <div class="forgot"><a href="#" class="forgot">忘记帐号或者密码</a></div>     
+            </div>
+        </form>
+    </div>
+	<div class="bg-changer">
+        <div class="swiper-container changer-list">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/a.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/b.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/c.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/d.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/e.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/f.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/g.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/h.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/i.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/j.jpg" alt=""></div>
+                <div class="swiper-slide"><img class="item" src="/static/X-admin/images/k.jpg" alt=""></div>
+                <div class="swiper-slide"><span class="reset">初始化</span></div>
             </div>
         </div>
+        <div class="bg-out"></div>
+        <div id="changer-set"><i class="iconfont">&#xe696;</i></div>   
     </div>
-</div><!-- /container -->
-<script src="/static/login/login/js/TweenLite.min.js"></script>
-<script src="/static/login/login/js/EasePack.min.js"></script>
-<script src="/static/login/login/js/rAF.js"></script>
-<script src="/static/login/login/js/demo-1.js"></script>
+    <script>
+        $(function  () {
+            layui.use('form', function(){
+              var form = layui.form();
+              //监听提交
+              form.on('submit(login)', function(data){
+                layer.msg(JSON.stringify(data.field),function(){
+                    location.href='index.html'
+                });
+                return false;
+              });
+            });
+        })
+        
+    </script>
+    <script>
+    //百度统计可去掉
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
 </body>
-<script>
-    //加载弹出层组件
-    layui.use('layer', function () {
-
-        var layer = layui.layer;
-
-        //登录的点击事件
-        $("#sub_login").on("click", function () {
-            login();
-        });
-
-        $("body").keydown(function () {
-            if (event.keyCode == "13") {
-                login();
-            }
-        });
-
-        //登录函数
-        function login() {
-            var phonenumber = $(" input[ name='phonenumber' ] ").val();
-            var password = $(" input[ name='password' ] ").val();
-            // alert('请求成功aaaaaaa');
-            $.ajax({
-                url: "/user/login",
-                data: JSON.stringify({"phonenumber": phonenumber, "password": password}),
-                type: "post",
-                dataType: "json",
-                contentType: "application/json",
-                success: function (data) {
-                    if (data.success) {
-                        window.location = "index";
-                    } else {
-                        layer.msg(data.msg);
-                    }
-                    alert('请求成功');
-                    console.log(data);
-                }
-            })
-        }
-    })
-</script>
 </html>
