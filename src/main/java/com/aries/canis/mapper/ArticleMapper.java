@@ -23,6 +23,8 @@ public interface ArticleMapper {
 
     List<Article> selectByExample(ArticleExample example);
 
+    List<Article> selectAllArticle();
+
     Article selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") Article record, @Param("example") ArticleExample example);

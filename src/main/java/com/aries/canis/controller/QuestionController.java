@@ -26,7 +26,7 @@ public class QuestionController {
 
     @RequestMapping("/list")
     public ModelAndView list() {
-        List<QuestionVO> questionList = questionService.getQuestionList(1, 20);
+        List<QuestionVO> questionList = questionService.getQuestionList();
         ModelAndView modelAndView = new ModelAndView("question-list");
         modelAndView.addObject("questionvolist", questionList);
         return modelAndView;
@@ -63,5 +63,13 @@ public class QuestionController {
         Long id = questionService.update(question);
         log.info("上传题目成功，题号：{}", id);
         return "update";
+    }
+
+    @GetMapping("/audit/list")
+    public ModelAndView auditList() {
+        List<QuestionVO> auditList = questionService.getAuditList();
+        ModelAndView modelAndView = new ModelAndView("audit-list");
+        modelAndView.addObject("auditList", auditList);
+        return modelAndView;
     }
 }

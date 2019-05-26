@@ -11,17 +11,17 @@
         <div class="content">
             <xblock>
                 <blockquote class="layui-elem-quote">
-                    题库列表
+                    审核列表
                 </blockquote>
-                <button class="layui-btn" onclick="window.open('/question/upload/detail','top')">
-                    <i class="layui-icon">&#xe608;</i>添加题目
-                </button>
+<!--                <button class="layui-btn" onclick="window.open('/question/upload/detail','top')">-->
+<!--                    <i class="layui-icon">&#xe608;</i>添加题目-->
+<!--                </button>-->
                 <table class="layui-table">
                     <thead>
                     <tr>
-<!--                        <th>-->
-<!--                            <input type="checkbox" name="" value="">-->
-<!--                        </th>-->
+                        <!--                        <th>-->
+                        <!--                            <input type="checkbox" name="" value="">-->
+                        <!--                        </th>-->
                         <th>
                             ID
                         </th>
@@ -42,7 +42,7 @@
                         </th>
                     </tr>
                     </thead>
-                    <tbody th:each="question:${questionvolist}">
+                    <tbody th:each="question:${auditList}">
                     <tr>
                         <td th:text="${question.id}"></td>
                         <td th:text="${question.title}"></td>

@@ -114,6 +114,10 @@
     from article
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="selectAllArticle" resultMap="ResultMapWithBLOBs">
+    select id, course_id, number, title
+    from article
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from article
     where id = #{id,jdbcType=BIGINT}

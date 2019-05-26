@@ -29,9 +29,22 @@ public class QuestionServiceImpl implements QuestionService {
     private CategoryMapper categoryMapper;
 
     @Override
-    public List<QuestionVO> getQuestionList(int page, int pageSize) {
-        PageHelper.startPage(page, pageSize);
+    public List<QuestionVO> getQuestionList() {
         QuestionExample example = new QuestionExample();
+        example.createCriteria().andAuditEqualTo(0);
+        example.setOrderByClause("id asc");
+        List<Question> questionList = questionMapper.selectByExample(example);
+        List<QuestionVO> questionVOList = new ArrayList<>();
+        for (Question question : questionList) {
+            questionVOList.add(convert2QuestionVO(question));
+        }
+        return questionVOList;
+    }
+
+    @Override
+    public List<QuestionVO> getAuditList() {
+        QuestionExample example = new QuestionExample();
+        example.createCriteria().andAuditEqualTo(1);
         example.setOrderByClause("id asc");
         List<Question> questionList = questionMapper.selectByExample(example);
         List<QuestionVO> questionVOList = new ArrayList<>();

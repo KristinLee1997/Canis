@@ -22,11 +22,11 @@ public enum QuestionTypeEnum {
 
     public static String getTypeName(Integer id) {
         switch (id) {
+            case 0: {
+                return SelectionType.getTypeName();
+            }
             case 1: {
                 return FillingType.getTypeName();
-            }
-            case 2: {
-                return SelectionType.getTypeName();
             }
             default: {
                 return null;

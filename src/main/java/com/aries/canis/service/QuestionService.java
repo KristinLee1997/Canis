@@ -8,7 +8,9 @@ import com.aries.canis.model.vo.QuestionVO;
 import java.util.List;
 
 public interface QuestionService {
-    List<QuestionVO> getQuestionList(int page, int pageSize);
+    List<QuestionVO> getQuestionList();
+
+    List<QuestionVO> getAuditList();
 
     QuestionVO getQuestionById(Long id);
 

@@ -11,52 +11,43 @@
         <div class="content">
             <xblock>
                 <blockquote class="layui-elem-quote">
-                    题库列表
+                    文章列表
                 </blockquote>
                 <button class="layui-btn" onclick="window.open('/question/upload/detail','top')">
-                    <i class="layui-icon">&#xe608;</i>添加题目
+                    <i class="layui-icon">&#xe608;</i>添加文章
                 </button>
                 <table class="layui-table">
                     <thead>
                     <tr>
-<!--                        <th>-->
-<!--                            <input type="checkbox" name="" value="">-->
-<!--                        </th>-->
+                        <!--                        <th>-->
+                        <!--                            <input type="checkbox" name="" value="">-->
+                        <!--                        </th>-->
                         <th>
                             ID
                         </th>
                         <th>
-                            题目
+                            专栏id
                         </th>
                         <th>
-                            分类
+                            文章编号
                         </th>
                         <th>
-                            种类
-                        </th>
-                        <th>
-                            题目描述
-                        </th>
-                        <th>
-                            难度级别
+                            文章题目
                         </th>
                     </tr>
                     </thead>
-                    <tbody th:each="question:${questionvolist}">
+                    <tbody th:each="article:${articleList}">
                     <tr>
-                        <td th:text="${question.id}"></td>
-                        <td th:text="${question.title}"></td>
-                        <td th:text="${question.categoryName}"></td>
-                        <td th:text="${question.type}"></td>
-                        <td th:text="${question.description}"></td>
-                        <td th:text="${question.difficulty}"></td>
+                        <td th:text="${article.id}"></td>
+                        <td th:text="${article.courseId}"></td>
+                        <td th:text="${article.number}"></td>
+                        <td th:text="${article.title}"></td>
                         <td class="td-manage">
                             <!--                            th:onclick="'javascript:member_edit('编辑',\''+'/get/'+${question.id}+'\','4','','510');'"-->
                             <!--                            th:onclick="'window.location.href = \'' + @{/question/get/{id}(id=${question.id})} + '\''"-->
                             <!--                            th:onclick="'window.open(\'' + @{/question/get/{id}(id=${question.id})} + \'','top')'"-->
                             <!--                            onclick="window.open('/question/get/1','top')"-->
                             <a title="编辑" href="javascript:;"
-                               th:onclick="'window.location.href = \'' + @{/question/get/{id}(id=${question.id})} + '\''"
                                class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
