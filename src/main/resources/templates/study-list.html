@@ -13,12 +13,12 @@
                 <blockquote class="layui-elem-quote">
                     学习专栏列表
                 </blockquote>
-                <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除
+<!--                <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除-->
                 </button>
                 <button class="layui-btn" onclick="member_add('添加用户','/templates/member-add.html','600','500')"><i
                         class="layui-icon">&#xe608;</i>添加专栏
                 </button>
-                <span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
+<!--                <span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>-->
             <table class="layui-table">
                 <thead>
                 <tr>
@@ -42,20 +42,20 @@
                     <td th:text="${course.teacherName}"></td>
                     <td th:text="${course.courseDesc}"></td>
                     <td class="td-manage">
-                        <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;"
-                           title="停用">
-                            <i class="layui-icon">&#xe601;</i>
-                        </a>
+<!--                        <a style="text-decoration:none" onclick="member_stop(this,'10001')" href="javascript:;"-->
+<!--                           title="停用">-->
+<!--                            <i class="layui-icon">&#xe601;</i>-->
+<!--                        </a>-->
                         <a title="编辑" href="javascript:;"
                            onclick="member_edit('编辑','/templates/member-edit.html','4','','510')"
                            class="ml-5" style="text-decoration:none">
                             <i class="layui-icon">&#xe642;</i>
                         </a>
-                        <a style="text-decoration:none"
-                           onclick="member_password('修改密码','/templates/member-password.html','10001','600','400')"
-                           href="javascript:;" title="修改密码">
-                            <i class="layui-icon">&#xe631;</i>
-                        </a>
+<!--                        <a style="text-decoration:none"-->
+<!--                           onclick="member_password('修改密码','/templates/member-password.html','10001','600','400')"-->
+<!--                           href="javascript:;" title="修改密码">-->
+<!--                            <i class="layui-icon">&#xe631;</i>-->
+<!--                        </a>-->
                         <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
                            style="text-decoration:none">
                             <i class="layui-icon">&#xe640;</i>

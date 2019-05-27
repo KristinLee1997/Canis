@@ -11,7 +11,7 @@
         <div class="content">
             <xblock>
                 <blockquote class="layui-elem-quote">
-                    审核列表
+                    待审核题目列表
                 </blockquote>
 <!--                <button class="layui-btn" onclick="window.open('/question/upload/detail','top')">-->
 <!--                    <i class="layui-icon">&#xe608;</i>添加题目-->
@@ -40,6 +40,9 @@
                         <th>
                             难度级别
                         </th>
+                        <th>
+
+                        </th>
                     </tr>
                     </thead>
                     <tbody th:each="question:${auditList}">
@@ -55,14 +58,9 @@
                             <!--                            th:onclick="'window.location.href = \'' + @{/question/get/{id}(id=${question.id})} + '\''"-->
                             <!--                            th:onclick="'window.open(\'' + @{/question/get/{id}(id=${question.id})} + \'','top')'"-->
                             <!--                            onclick="window.open('/question/get/1','top')"-->
-                            <a title="编辑" href="javascript:;"
-                               th:onclick="'window.location.href = \'' + @{/question/get/{id}(id=${question.id})} + '\''"
-                               class="ml-5" style="text-decoration:none">
-                                <i class="layui-icon">&#xe642;</i>
-                            </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
-                               style="text-decoration:none">
-                                <i class="layui-icon">&#xe640;</i>
+                            <a style="text-decoration:none"  onclick="member_password('修改密码','member-password.html','10001','600','400')"
+                               href="javascript:;" title="修改密码">
+                                <i class="layui-icon">&#xe631;</i>
                             </a>
                         </td>
                     </tr>
