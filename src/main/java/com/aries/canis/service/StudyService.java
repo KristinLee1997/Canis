@@ -9,4 +9,8 @@ public interface StudyService {
     List<Course> getAllCourse();
 
     List<Article> getAllArticle();
+
+    Long addCourse(Course course);
+
+    int deletebyId(Long id);
 }

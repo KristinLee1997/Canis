@@ -12,6 +12,8 @@ public interface QuestionService {
 
     List<QuestionVO> getAuditList();
 
+    int auditById(Long id);
+
     QuestionVO getQuestionById(Long id);
 
     Category selectCategoryByPrimary(Integer id);
@@ -25,4 +27,6 @@ public interface QuestionService {
     List<Category> selectAllCategory();
 
     List<QuestionDifficultyVO> getDifficultyList();
+
+    int deleteById(Long id);
 }

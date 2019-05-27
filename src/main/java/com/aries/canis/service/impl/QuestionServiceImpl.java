@@ -11,7 +11,6 @@ import com.aries.canis.model.po.QuestionExample;
 import com.aries.canis.model.vo.QuestionDifficultyVO;
 import com.aries.canis.model.vo.QuestionVO;
 import com.aries.canis.service.QuestionService;
-import com.github.pagehelper.PageHelper;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +54,15 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public int auditById(Long id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setAudit(1);
+        int i = questionMapper.updateByPrimaryKeySelective(question);
+        return i;
+    }
+
+    @Override
     public QuestionVO getQuestionById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         QuestionVO questionVO = convert2QuestionVO(question);
@@ -95,6 +103,12 @@ public class QuestionServiceImpl implements QuestionService {
             difficultyVOList.add(difficultyVO);
         }
         return difficultyVOList;
+    }
+
+    @Override
+    public int deleteById(Long id) {
+        int i = questionMapper.deleteByPrimaryKey(id);
+        return i;
     }
 
     @Override

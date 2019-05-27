@@ -72,4 +72,26 @@ public class QuestionController {
         modelAndView.addObject("auditList", auditList);
         return modelAndView;
     }
+
+    @GetMapping("/audit/{id}")
+    public ModelAndView auditById(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("audit-list");
+        if (id <= 0) {
+            log.warn("审核题目操作参数异常，id：" + id);
+            return modelAndView;
+        }
+        int i = questionService.auditById(id);
+        return modelAndView;
+    }
+
+    @GetMapping("/del/{id}")
+    public ModelAndView deleteById(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("question-list");
+        if (id <= 0) {
+            log.warn("删除题目操作参数异常，id：" + id);
+            return modelAndView;
+        }
+        int i = questionService.deleteById(id);
+        return modelAndView;
+    }
 }

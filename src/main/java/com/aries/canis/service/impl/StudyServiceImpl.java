@@ -40,4 +40,20 @@ public class StudyServiceImpl implements StudyService {
         }
         return articles;
     }
+
+    @Override
+    public Long addCourse(Course course) {
+        int i = courseMapper.insertSelective(course);
+        if (i == 1) {
+            return course.getId();
+        } else {
+            return 0L;
+        }
+    }
+
+    @Override
+    public int deletebyId(Long id) {
+        int i = courseMapper.deleteByPrimaryKey(id);
+        return i;
+    }
 }
