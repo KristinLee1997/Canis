@@ -13,15 +13,12 @@
                 <blockquote class="layui-elem-quote">
                     文章列表
                 </blockquote>
-                <button class="layui-btn" onclick="window.open('/question/upload/detail','top')">
+                <button class="layui-btn" onclick="window.open('/study/article/upload','top')">
                     <i class="layui-icon">&#xe608;</i>添加文章
                 </button>
                 <table class="layui-table">
                     <thead>
                     <tr>
-                        <!--                        <th>-->
-                        <!--                            <input type="checkbox" name="" value="">-->
-                        <!--                        </th>-->
                         <th>
                             ID
                         </th>
@@ -43,15 +40,18 @@
                         <td th:text="${article.number}"></td>
                         <td th:text="${article.title}"></td>
                         <td class="td-manage">
-                            <!--                            th:onclick="'javascript:member_edit('编辑',\''+'/get/'+${question.id}+'\','4','','510');'"-->
-                            <!--                            th:onclick="'window.location.href = \'' + @{/question/get/{id}(id=${question.id})} + '\''"-->
-                            <!--                            th:onclick="'window.open(\'' + @{/question/get/{id}(id=${question.id})} + \'','top')'"-->
-                            <!--                            onclick="window.open('/question/get/1','top')"-->
+                            <a style="text-decoration:none"
+                               th:onclick="'window.location.href = \'' + @{/study/article/get/{id}(id=${article.id})} + '\''"
+                               href="javascript:;" title="查看专栏详情">
+                                <i class="layui-icon">&#xe63c;</i>
+                            </a>
                             <a title="编辑" href="javascript:;"
+                               th:onclick="'window.location.href = \'' + @{/study/article/edit/{id}(id=${article.id})} + '\''"
                                class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                            <a title="删除" href="javascript:;"
+                               th:onclick="'javascript:member_del(this,\''+${article.id}+'\')'"
                                style="text-decoration:none">
                                 <i class="layui-icon">&#xe640;</i>
                             </a>
@@ -102,33 +102,27 @@
             }
         };
 
-        // document.getElementById('LAY_demorange_s').onclick = function () {
-        //     start.elem = this;
-        //     laydate(start);
-        // };
-        // document.getElementById('LAY_demorange_e').onclick = function () {
-        //     end.elem = this;
-        //     laydate(end);
-        // }
-
     });
 
-    /*用户-添加*/
-    function member_add(title, url, w, h) {
-        x_admin_show(title, url, w, h);
-    }
-
-    // 用户-编辑
-    function member_edit(title, url, id, w, h) {
-        x_admin_show(title, url, w, h);
-    }
-
-    /*用户-删除*/
+    /*文章-删除*/
     function member_del(obj, id) {
-        layer.confirm('确认要删除吗？', function (index) {
+        layer.confirm('确认要删除这篇文章吗？', function (index) {
             //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', {icon: 1, time: 1000});
+            // $(obj).parents("tr").remove();
+            $.get({
+                async: false,
+                url: "/study/article/delete/" + id,
+                success: function (resp) {
+                    // $("#account_name")[0].innerHTML = resp.data
+
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+            layer.msg('已删除!', {icon: 1, time: 1000}, function () {
+                location.replace("/study/article/list")
+            });
         });
     }
 </script>

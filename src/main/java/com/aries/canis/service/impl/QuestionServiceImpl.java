@@ -133,6 +133,7 @@ public class QuestionServiceImpl implements QuestionService {
         questionVo.setCategoryId(question.getCategoryId());
         questionVo.setCategoryName(selectCategoryByPrimary(question.getCategoryId()).getCategoryName());
         questionVo.setDifficulty(QuestionDifficultyEnum.getLevel(question.getDifficulty()));
+        questionVo.setIsAudit(question.getAudit());
         if (question.getType().equals(QuestionTypeEnum.SelectionType.getId())) {
             questionVo.setSelection(question.getSelection());
         }

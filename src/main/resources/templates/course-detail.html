@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Orion</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="/static/images/miao.jpeg" type="image/x-icon"/>
+    <link rel="stylesheet" href="/static/layui/css/layui.css" media="all">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-body" style="margin-left:-150px;margin-top: -50px">
+        <div style="margin-right: 50px">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>查看题目详情</legend>
+            </fieldset>
+            <form class="layui-form layui-form-pane" action="">
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label"><b>专栏题目</b></label>
+                    <div class="layui-input-block">
+                        <textarea name="courseName" placeholder="请输入专栏题目" class="layui-textarea"
+                                  th:text="${course.courseName}"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label"><b>专栏简介</b></label>
+                    <div class="layui-input-block">
+                        <textarea name="courseDesc" placeholder="请输入专栏简介" class="layui-textarea"
+                                  th:text="${course.courseDesc}"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label"><b>专栏题目详情</b></label>
+                    <div class="layui-input-block">
+                        <textarea name="courseIntroduce" placeholder="请输入专栏介绍" class="layui-textarea"
+                                  th:text="${course.courseIntroduce}"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label"><b>讲师名字</b></label>
+                    <div class="layui-input-block">
+                        <textarea name="teacherName" placeholder="请输入讲师名字" class="layui-textarea"
+                                  th:text="${course.teacherName}"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label"><b>讲师简介</b></label>
+                    <div class="layui-input-block">
+                        <textarea name="teacherDesc" placeholder="请输入讲师简介" class="layui-textarea"
+                                  th:text="${course.teacherDesc}"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label"><b>专栏亮点</b></label>
+                    <div class="layui-input-block">
+                        <textarea name="brightSpot" placeholder="请输入专栏亮点" class="layui-textarea"
+                                  th:text="${course.brightSpot}"></textarea>
+                    </div>
+                </div>
+<!--                <div class="layui-form-item layui-form-text" style="display: none;">-->
+<!--                    <div class="layui-input-block">-->
+<!--                    <textarea name="id" class="layui-textarea"-->
+<!--                              th:text="${course.id}"></textarea>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="layui-form-item">-->
+<!--                    <button class="layui-btn" lay-submit="" lay-filter="demo2">提交题目</button>-->
+<!--                </div>-->
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

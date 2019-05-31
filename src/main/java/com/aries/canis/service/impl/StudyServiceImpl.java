@@ -6,6 +6,7 @@ import com.aries.canis.model.po.Article;
 import com.aries.canis.model.po.Course;
 import com.aries.canis.model.po.CourseExample;
 import com.aries.canis.service.StudyService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
+@Slf4j
 public class StudyServiceImpl implements StudyService {
     @Resource
     private CourseMapper courseMapper;
@@ -52,8 +54,47 @@ public class StudyServiceImpl implements StudyService {
     }
 
     @Override
-    public int deletebyId(Long id) {
+    public int deleteCourseById(Long id) {
         int i = courseMapper.deleteByPrimaryKey(id);
+        return i;
+    }
+
+    @Override
+    public Course getCourseById(Long id) {
+        Course course = courseMapper.selectByPrimaryKey(id);
+        return course;
+    }
+
+    @Override
+    public int editCourse(Course course) {
+        int i = courseMapper.updateByPrimaryKeySelective(course);
+        return i;
+    }
+
+    @Override
+    public Long addArticle(Article article) {
+        int i = articleMapper.insertSelective(article);
+        if (i > 0) {
+            return article.getId();
+        }
+        return -1L;
+    }
+
+    @Override
+    public Article getArticleById(Long id) {
+        Article article = articleMapper.selectByPrimaryKey(id);
+        return article;
+    }
+
+    @Override
+    public int editArticle(Article article) {
+        int i = articleMapper.updateByPrimaryKeySelective(article);
+        return i;
+    }
+
+    @Override
+    public int deleteArticle(Long id) {
+        int i = articleMapper.deleteByPrimaryKey(id);
         return i;
     }
 }

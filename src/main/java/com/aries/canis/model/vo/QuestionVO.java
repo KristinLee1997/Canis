@@ -21,6 +21,8 @@ public class QuestionVO {
 
     private Integer passNum;
 
+    private Integer isAudit;
+
     public Long getId() {
         return id;
     }
@@ -99,5 +101,13 @@ public class QuestionVO {
 
     public void setPassNum(Integer passNum) {
         this.passNum = passNum;
+    }
+
+    public Integer getIsAudit() {
+        return isAudit;
+    }
+
+    public void setIsAudit(Integer isAudit) {
+        this.isAudit = isAudit;
     }
 }

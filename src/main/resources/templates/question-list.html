@@ -51,10 +51,6 @@
                         <td th:text="${question.description}"></td>
                         <td th:text="${question.difficulty}"></td>
                         <td class="td-manage">
-                            <!--                            th:onclick="'javascript:member_edit('编辑',\''+'/get/'+${question.id}+'\','4','','510');'"-->
-                            <!--                            th:onclick="'window.location.href = \'' + @{/question/get/{id}(id=${question.id})} + '\''"-->
-                            <!--                            th:onclick="'window.open(\'' + @{/question/get/{id}(id=${question.id})} + \'','top')'"-->
-                            <!--                            onclick="window.open('/question/get/1','top')"-->
                             <a title="编辑" href="javascript:;"
                                th:onclick="'window.location.href = \'' + @{/question/get/{id}(id=${question.id})} + '\''"
                                class="ml-5" style="text-decoration:none">
@@ -129,9 +125,9 @@
 
     });
 
-    /*用户-删除*/
+    /*题目-删除*/
     function member_del(obj, id) {
-        layer.confirm('确认要删除吗？', function (index) {
+        layer.confirm('确认要删除这个题目吗？', function (index) {
             //发异步删除数据
             // $(obj).parents("tr").remove();
             $.get({
@@ -166,7 +162,7 @@
                     console.log(err);
                 }
             });
-            layer.msg('已删除!', {icon: 1, time: 1000}, function () {
+            layer.msg('已审核通过!', {icon: 1, time: 1000}, function () {
                 location.replace("/question/list")
             });
         });
