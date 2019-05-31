@@ -19,9 +19,6 @@
                 <table class="layui-table">
                     <thead>
                     <tr>
-<!--                        <th>-->
-<!--                            <input type="checkbox" name="" value="">-->
-<!--                        </th>-->
                         <th>
                             ID
                         </th>
@@ -63,9 +60,15 @@
                                class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
-                            <a title="删除" href="javascript:;" onclick="member_del(this,'1')"
+                            <a title="删除" href="javascript:;"
+                               th:onclick="'javascript:member_del(this,\''+${question.id}+'\')'"
                                style="text-decoration:none">
                                 <i class="layui-icon">&#xe640;</i>
+                            </a>
+                            <a style="text-decoration:none"
+                               th:onclick="'javascript:member_audit(this,\''+${question.id}+'\')'"
+                               href="javascript:;" title="审核题目">
+                                <i class="layui-icon">&#xe631;</i>
                             </a>
                         </td>
                     </tr>
@@ -86,6 +89,7 @@
 </div>
 
 <!-- 页面动态效果 -->
+<!--<script type="text/javascript" src="/static/login/jquery/jquery.min.js"></script>-->
 <script>
 
     layui.use(['laydate'], function () {
@@ -114,33 +118,57 @@
             }
         };
 
-        // document.getElementById('LAY_demorange_s').onclick = function () {
-        //     start.elem = this;
-        //     laydate(start);
-        // };
-        // document.getElementById('LAY_demorange_e').onclick = function () {
-        //     end.elem = this;
-        //     laydate(end);
-        // }
+        document.getElementById('LAY_demorange_s').onclick = function () {
+            start.elem = this;
+            laydate(start);
+        }
+        document.getElementById('LAY_demorange_e').onclick = function () {
+            end.elem = this
+            laydate(end);
+        }
 
     });
-
-    /*用户-添加*/
-    function member_add(title, url, w, h) {
-        x_admin_show(title, url, w, h);
-    }
-
-    // 用户-编辑
-    function member_edit(title, url, id, w, h) {
-        x_admin_show(title, url, w, h);
-    }
 
     /*用户-删除*/
     function member_del(obj, id) {
         layer.confirm('确认要删除吗？', function (index) {
             //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', {icon: 1, time: 1000});
+            // $(obj).parents("tr").remove();
+            $.get({
+                async: false,
+                url: "/question/del/" + id,
+                success: function (resp) {
+                    // $("#account_name")[0].innerHTML = resp.data
+
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+            layer.msg('已删除!', {icon: 1, time: 1000}, function () {
+                location.replace("/question/list")
+            });
+        });
+    }
+
+    /*题目-审核*/
+    function member_audit(obj, id) {
+        layer.confirm('确认要审核通过吗？', function (index) {
+            //发异步删除数据
+            $.get({
+                async: false,
+                url: "/question/audit/" + id,
+                success: function (resp) {
+                    // $("#account_name")[0].innerHTML = resp.data
+
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+            layer.msg('已删除!', {icon: 1, time: 1000}, function () {
+                location.replace("/question/list")
+            });
         });
     }
 </script>

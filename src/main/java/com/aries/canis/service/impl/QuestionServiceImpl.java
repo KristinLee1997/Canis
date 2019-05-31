@@ -119,7 +119,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public Long update(Question question) {
-        questionMapper.updateByPrimaryKeySelective(question);
+        int i = questionMapper.updateByPrimaryKeySelective(question);
         return question.getId();
     }
 

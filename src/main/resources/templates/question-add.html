@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head >
+<head>
     <meta charset="utf-8">
     <title>Orion</title>
     <meta name="renderer" content="webkit">
@@ -146,23 +146,25 @@
 
         //监听提交
         form.on('submit(demo2)', function (data) {
-            layer.alert(JSON.stringify(data.field), {
-                title: '最终的提交信息'
-            });
+            // layer.alert(JSON.stringify(data.field), {
+            //     title: '最终的提交信息'
+            // });
             $.ajax({
-                url: "/questions/upload",
+                url: "/question/upload",
                 data: JSON.stringify(data.field),
                 type: "post",
                 dataType: "json",
                 contentType: "application/json",
                 success: function (data) {
-                    if (data.success) {
-                        window.location = "index";
-                    } else {
-                        layer.msg(data.msg);
-                    }
-                    alert('请求成功');
                     console.log(data);
+                    console.log("haha");
+                    layer.alert('上传成功', {icon: 6}, function () {
+                        location.replace("/question/list")
+                    });
+                },
+                error: function (e, m) {
+                    console.log(e);
+                    console.log(m);
                 }
             });
             return false;
