@@ -11,56 +11,43 @@
         <div class="content">
             <xblock>
                 <blockquote class="layui-elem-quote">
-                    已审核题目列表
+                    管理员列表
                 </blockquote>
-<!--                <button class="layui-btn" onclick="window.open('/question/upload/detail','top')">-->
-<!--                    <i class="layui-icon">&#xe608;</i>添加题目-->
-<!--                </button>-->
+                <button class="layui-btn" onclick="member_add('添加系统管理员','/admin/add/view','600','500')">
+                    <i class="layui-icon">&#xe608;</i>
+                    添加
+                </button>
                 <table class="layui-table">
                     <thead>
                     <tr>
-                        <!--                        <th>-->
-                        <!--                            <input type="checkbox" name="" value="">-->
-                        <!--                        </th>-->
-                        <th style="width: 30px">
+                        <th>
                             ID
                         </th>
                         <th>
-                            题目
+                            昵称
                         </th>
                         <th>
-                            分类
+                            手机号
                         </th>
                         <th>
-                            种类
-                        </th>
-                        <th>
-                            题目描述
-                        </th>
-                        <th>
-                            难度级别
+                            注册时间
                         </th>
                         <th>
 
                         </th>
                     </tr>
                     </thead>
-                    <tbody th:each="question:${auditList}">
+                    <tbody th:each="admin:${adminList}">
                     <tr>
-                        <td th:text="${question.id}"></td>
-                        <td th:text="${question.title}"></td>
-                        <td th:text="${question.categoryName}"></td>
-                        <td th:text="${question.type}"></td>
-                        <td th:text="${question.description}"></td>
-                        <td th:text="${question.difficulty}"></td>
+                        <td th:text="${admin.id}"></td>
+                        <td th:text="${admin.nickname}"></td>
+                        <td th:text="${admin.phoneNumber}"></td>
+                        <td th:text="${admin.addTime}"></td>
                         <td class="td-manage">
-                            <!--                            th:onclick="'javascript:member_edit('编辑',\''+'/get/'+${question.id}+'\','4','','510');'"-->
-                            <!--                            th:onclick="'window.location.href = \'' + @{/question/get/{id}(id=${question.id})} + '\''"-->
-                            <!--                            th:onclick="'window.open(\'' + @{/question/get/{id}(id=${question.id})} + \'','top')'"-->
-                            <!--                            onclick="window.open('/question/get/1','top')"-->
-                            <a style="text-decoration:none"  th:onclick="'javascript:member_audit(this,\''+${question.id}+'\')'"
-                               href="javascript:;" title="审核题目">
-                                <i class="layui-icon">&#xe631;</i>
+                            <a title="取消管理员权限" href="javascript:;"
+                               th:onclick="'javascript:member_del(this,\''+${admin.id}+'\')'"
+                               style="text-decoration:none">
+                                <i class="layui-icon">&#xe640;</i>
                             </a>
                         </td>
                     </tr>
@@ -81,6 +68,7 @@
 </div>
 
 <!-- 页面动态效果 -->
+<!--<script type="text/javascript" src="/static/login/jquery/jquery.min.js"></script>-->
 <script>
 
     layui.use(['laydate'], function () {
@@ -108,15 +96,31 @@
                 start.max = datas; //结束日选好后，重置开始日的最大日期
             }
         };
+
+        document.getElementById('LAY_demorange_s').onclick = function () {
+            start.elem = this;
+            laydate(start);
+        }
+        document.getElementById('LAY_demorange_e').onclick = function () {
+            end.elem = this
+            laydate(end);
+        }
+
     });
 
-    /*题目-审核*/
-    function member_audit(obj, id) {
-        layer.confirm('确认要审核不通过吗？', function (index) {
+    /*用户-添加*/
+    function member_add(title, url, w, h) {
+        x_admin_show(title, url, w, h);
+    }
+
+    /* 取消管理员权限*/
+    function member_del(obj, id) {
+        layer.confirm('确认要取消管理员权限吗？', function (index) {
             //发异步删除数据
+            // $(obj).parents("tr").remove();
             $.get({
                 async: false,
-                url: "/question/audit/" + id,
+                url: "/admin/reset/" + id,
                 success: function (resp) {
                     // $("#account_name")[0].innerHTML = resp.data
 
@@ -125,8 +129,8 @@
                     console.log(err);
                 }
             });
-            layer.msg('已删除!', {icon: 1, time: 1000},function () {
-                location.replace("/question/audit/list")
+            layer.msg('已删除!', {icon: 1, time: 1000}, function () {
+                location.replace("/admin/list")
             });
         });
     }

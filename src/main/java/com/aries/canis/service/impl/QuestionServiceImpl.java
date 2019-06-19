@@ -57,7 +57,7 @@ public class QuestionServiceImpl implements QuestionService {
     public int auditById(Long id) {
         Question question = new Question();
         question.setId(id);
-        question.setAudit(1);
+        question.setAudit(0);
         int i = questionMapper.updateByPrimaryKeySelective(question);
         return i;
     }
