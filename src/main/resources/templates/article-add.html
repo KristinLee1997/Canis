@@ -43,7 +43,8 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label"><b>文章内容</b></label>
                     <div class="layui-input-block">
-                        <textarea name="content" placeholder="请输入文章内容" class="layui-textarea"></textarea>
+                        <textarea name="content" id="article-content" placeholder="请输入文章内容"
+                                  class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -64,20 +65,25 @@
         var element = layui.element;
 
     });
-    layui.use(['form', 'layedit', 'laydate', 'rate', 'jquery'], function () {
+
+    layui.use(['form', 'layedit', 'laydate', 'rate', 'jquery', 'layedit'], function () {
         var form = layui.form
             , layer = layui.layer
             // , layedit = layui.layedit
             , laydate = layui.laydate;
         var rate = layui.rate,
+            layedit = layui.layedit,
             $ = layui.jquery;
 
+        var index = layedit.build('article-content'); //建立编辑器
 
         //监听提交
         form.on('submit(demo2)', function (data) {
             // layer.alert(JSON.stringify(data.field), {
             //     title: '最终的提交信息'
             // });
+            var article_content = layedit.getContent(index);
+            data.field.content = article_content;
             $.ajax({
                 url: "/study/article/upload/detail",
                 data: JSON.stringify(data.field),
@@ -100,6 +106,7 @@
         });
 
     });
+
 
 </script>
 

@@ -40,7 +40,8 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label"><b>文章内容</b></label>
                     <div class="layui-input-block">
-                        <textarea name="content" th:text="${article.content}" class="layui-textarea"></textarea>
+                        <textarea name="content" id="article-content" th:text="${article.content}"
+                                  class="layui-textarea"></textarea>
                     </div>
                 </div>
                 <!--                <div class="layui-form-item">-->
@@ -60,13 +61,15 @@
         var element = layui.element;
 
     });
-    layui.use(['form', 'layedit', 'laydate', 'rate', 'jquery'], function () {
+    layui.use(['form', 'layedit', 'laydate', 'rate', 'jquery', 'layedit'], function () {
         var form = layui.form
             , layer = layui.layer
             // , layedit = layui.layedit
             , laydate = layui.laydate;
         var rate = layui.rate,
+            layedit = layui.layedit,
             $ = layui.jquery;
+        var index = layedit.build('article-content'); //建立编辑器
     });
 
 </script>
